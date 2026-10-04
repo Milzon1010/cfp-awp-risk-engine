@@ -2,11 +2,15 @@ package main
 
 import (
 	"cfp-engine/internal/calculator"
+	"cfp-engine/internal/database"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
+	// Inisialisasi koneksi ke Database PostgreSQL
+	database.ConnectDB()
+
 	app := fiber.New()
 
 	// Menyajikan tampilan antarmuka web HTML dari folder "static"
@@ -31,7 +35,7 @@ func main() {
 		})
 	})
 
-	// Endpoint GET khusus untuk pengujian data simulasi default (diubah jalurnya agar tidak bentrok dengan web HTML)
+	// Endpoint GET khusus untuk pengujian data simulasi default
 	app.Get("/api/test-simulate", func(c *fiber.Ctx) error {
 		sampleInput := calculator.RiskProfileInput{
 			MonthlyExpense:    15000000,
