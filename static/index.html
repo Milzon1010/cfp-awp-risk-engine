@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFP & AWP Wealth Planner Engine | Allanray TechSight</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar & smooth styling */
+        body {
+            background-color: #030712;
+            background-image: radial-gradient(circle at 50% 0%, #064e3b 0%, #030712 60%);
+        }
+    </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between py-6 px-4 selection:bg-emerald-500 selection:text-slate-950">
+    <div class="max-w-5xl mx-auto w-full">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="inline-block px-3 py-1 mb-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-wider uppercase">
+                Professional Wealth Management Engine
+            </div>
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+                Allanray TechSight & Wealth Planner
+            </h1>
+            <p class="text-xs md:text-sm text-slate-400 mt-1">Financial Risk & Portfolio Engine (Standar CFP & AWP)</p>
+        </header>
+
+        <!-- Main 2-Column Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            
+            <!-- Kolom Kiri: Form Input -->
+            <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 p-6 rounded-2xl shadow-2xl shadow-emerald-950/20">
+                <h2 class="text-sm font-bold uppercase tracking-wider mb-5 text-emerald-400 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    Parameter Keuangan Klien
+                </h2>
+                
+                <form id="riskForm" class="space-y-4 text-sm">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Pengeluaran Bulanan (Rp)</label>
+                        <input type="text" id="monthly_expense_display" value="15.000.000" class="w-full px-3.5 py-2.5 bg-slate-950/80 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm transition font-mono">
+                        <input type="hidden" id="monthly_expense" value="15000000">
+                    </div>
+
+                    <div class="flex items-center space-x-3 py-1 bg-slate-950/40 px-3.5 rounded-xl border border-slate-800">
+                        <input type="checkbox" id="is_married" checked class="w-4 h-4 text-emerald-500 bg-slate-950 border-slate-700 rounded focus:ring-emerald-400 accent-emerald-500 cursor-pointer">
+                        <label for="is_married" class="text-xs font-medium text-slate-300 cursor-pointer select-none">Sudah Menikah (Faktor Risiko Menyesuaikan)</label>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Jumlah Anak</label>
+                        <input type="number" id="number_of_children" value="2" min="0" class="w-full px-3.5 py-2.5 bg-slate-950/80 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm transition font-mono">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Pendapatan Tahunan (Rp)</label>
+                        <input type="text" id="annual_income_display" value="300.000.000" class="w-full px-3.5 py-2.5 bg-slate-950/80 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm transition font-mono">
+                        <input type="hidden" id="annual_income" value="300000000">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Polis Asuransi Eksisting (Rp)</label>
+                        <input type="text" id="existing_insurance_display" value="500.000.000" class="w-full px-3.5 py-2.5 bg-slate-950/80 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm transition font-mono">
+                        <input type="hidden" id="existing_insurance" value="500000000">
+                    </div>
+
+                    <button type="submit" class="w-full mt-3 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold rounded-xl transition duration-200 text-xs tracking-wider uppercase shadow-lg shadow-emerald-500/20 cursor-pointer">
+                        Hitung Analisis Risiko & Gap
+                    </button>
+                </form>
+            </div>
+
+            <!-- Kolom Kanan: Hasil Analisis -->
+            <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 p-6 rounded-2xl shadow-2xl flex flex-col justify-between space-y-5">
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider mb-5 text-emerald-400 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Hasil Analisis & Rekomendasi
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800/80 relative overflow-hidden group hover:border-emerald-500/40 transition">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500"></div>
+                            <p class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Dana Darurat Ideal (CFP)</p>
+                            <p id="res_emergency" class="text-2xl font-black text-emerald-400 mt-1 font-mono">Rp 0</p>
+                        </div>
+
+                        <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800/80 relative overflow-hidden group hover:border-sky-500/40 transition">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-sky-500"></div>
+                            <p class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Human Life Value / HLV (AWP)</p>
+                            <p id="res_hlv" class="text-2xl font-black text-sky-400 mt-1 font-mono">Rp 0</p>
+                        </div>
+
+                        <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800/80 relative overflow-hidden group hover:border-rose-500/40 transition">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-rose-500"></div>
+                            <p class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Kekurangan Proteksi (Insurance Gap)</p>
+                            <p id="res_gap" class="text-2xl font-black text-rose-400 mt-1 font-mono">Rp 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-emerald-950/20 border border-emerald-500/20 rounded-xl">
+                    <p class="text-[11px] text-emerald-300 leading-relaxed text-center">
+                        💡 Rekomendasi: Tutup celah proteksi (*Insurance Gap*) dengan instrumen asuransi jiwa berjangka atau produk endowment untuk mengamankan aset keluarga.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-center text-xs text-slate-500">
+        Engineered with Go (Fiber) & Tailwind CSS • Allanray TechSight
+    </footer>
+
+    <!-- Script JavaScript Formatter & Fetcher -->
+    <script>
+        const formatRupiah = (angka) => {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(angka);
+        };
+
+        // Helper input masking untuk titik pemisah ribuan
+        const setupMask = (displayId, hiddenId) => {
+            const displayInput = document.getElementById(displayId);
+            const hiddenInput = document.getElementById(hiddenId);
+
+            displayInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                hiddenInput.value = value;
+                if (value === '') {
+                    displayInput.value = '';
+                    return;
+                }
+                displayInput.value = new Intl.NumberFormat('id-ID').format(value);
+            });
+        };
+
+        setupMask('monthly_expense_display', 'monthly_expense');
+        setupMask('annual_income_display', 'annual_income');
+        setupMask('existing_insurance_display', 'existing_insurance');
+
+        const calculate = async () => {
+            const payload = {
+                monthly_expense: parseFloat(document.getElementById('monthly_expense').value) || 0,
+                is_married: document.getElementById('is_married').checked,
+                number_of_children: parseInt(document.getElementById('number_of_children').value) || 0,
+                annual_income: parseFloat(document.getElementById('annual_income').value) || 0,
+                existing_insurance: parseFloat(document.getElementById('existing_insurance').value) || 0
+            };
+
+            try {
+                const response = await fetch('/api/calculate-risk', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const res = await response.json();
+                if(res.status === 'success') {
+                    document.getElementById('res_emergency').innerText = formatRupiah(res.data.ideal_emergency_fund);
+                    document.getElementById('res_hlv').innerText = formatRupiah(res.data.human_life_value);
+                    document.getElementById('res_gap').innerText = formatRupiah(res.data.insurance_gap);
+                }
+            } catch (err) {
+                console.error('Gagal mengambil data:', err);
+            }
+        };
+
+        document.getElementById('riskForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            calculate();
+        });
+
+        // Hitung otomatis saat pertama kali dibuka
+        calculate();
+    </script>
+</body>
+</html>
