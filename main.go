@@ -11,6 +11,9 @@ func main() {
 	// Inisialisasi koneksi ke Database PostgreSQL
 	database.ConnectDB()
 
+	// Jalankan migrasi otomatis untuk membuat tabel
+	database.RunMigrations()
+
 	app := fiber.New()
 
 	// Menyajikan tampilan antarmuka web HTML dari folder "static"
